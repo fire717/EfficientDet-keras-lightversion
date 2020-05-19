@@ -31,6 +31,7 @@ class WheatGenerator(Generator):
     def __init__(
             self,
             data_dir,
+            label_dir,
             label_name,
             classes={'wheat':0},
             image_extension='.jpg',
@@ -49,7 +50,7 @@ class WheatGenerator(Generator):
         self.classes = classes
 
         self.label_name_class = label_name.split(".")[0]
-        self.df = pd.read_csv(os.path.join(data_dir,label_name))
+        self.df = pd.read_csv(os.path.join(label_dir,label_name))
         self.image_names = [x+image_extension for x in list(set(self.df['image_id'].values))]
         print("____ len image_names: ",len(self.image_names))
 

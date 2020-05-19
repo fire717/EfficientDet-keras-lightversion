@@ -61,11 +61,11 @@ def py_nms(dets, scores, thresh, mode="Union"):
     return keep
 
 def main():
-    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
     phi = 0
     weighted_bifpn = False
-    model_path = "checkpoints/2020-04-21/pascal_50_0.2337_0.6807.h5"
+    model_path = "models/my_model.h5"
     #'models/efficientdet-d0.h5'
     image_sizes = (512, 640, 768, 896, 1024, 1280, 1408)
     image_size = image_sizes[phi]
@@ -73,12 +73,12 @@ def main():
     #classes = {value['id'] - 1: value['name'] for value in json.load(open('coco_90.json', 'r')).values()}
     #num_classes = 1
 
-    with open("../data/trainval/train_classes_labeled.txt","r",encoding="utf-8") as f:
-        lines = f.readlines()
-    classes = {int(value.split(",")[0]):value.split(",")[0] for value in lines}
+    # with open("../data/trainval/train_classes_labeled.txt","r",encoding="utf-8") as f:
+    #     lines = f.readlines()
+    classes = {0:"wheat"}#{int(value.split(",")[0]):value.split(",")[0] for value in lines}
     num_classes = len(classes)
 
-    score_threshold = 0.3
+    score_threshold = 0.1
     colors = [np.random.randint(0, 256, 3).tolist() for _ in range(num_classes)]
     #colors = [[0,0,255]]
     _, model = efficientdet(phi=phi,
@@ -89,7 +89,7 @@ def main():
                            detect_quadrangle=False)
     model.load_weights(model_path, by_name=True)
 
-    for image_path in glob.glob('datasets/rub/*.jpg'):
+    for image_path in glob.glob('./*.jpg'):
         image = cv2.imread(image_path)
         src_image = image.copy()
         # BGR -> RGB
@@ -116,9 +116,11 @@ def main():
         boxes = boxes[indices]
         labels = labels[indices]
 
+        print(boxes[0],scores[0],labels[0])
+
         draw_boxes(src_image, boxes, scores, labels, colors, classes)
 
-        save_path = os.path.join('datasets/res/',os.path.basename(image_path))
+        save_path = os.path.join('../',os.path.basename(image_path))
         cv2.imwrite(save_path, src_image)
         # cv2.namedWindow('image', cv2.WINDOW_NORMAL)
         # cv2.imshow('image', src_image)
