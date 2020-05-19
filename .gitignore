@@ -2,3 +2,4 @@
 /checkpoints
 /logs
 /models
+/utils/*.so
