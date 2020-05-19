@@ -1,3 +1,4 @@
 
-nohup python -u python train.py --snapshot imagenet --phi 0 --gpu 0 --random-transform --compute-val-loss --freeze-backbone --batch-size 16 --steps 210 wheat > train.log 2>&1 &
+nohup python -u train.py --snapshot imagenet --phi 0 --gpu 0 --random-transform --compute-val-loss --freeze-backbone --batch-size 16 --steps 210 --save_path "./models/" wheat "/home/AlgorithmicGroup/yw/workshop/cloth_det/data/wheat"  > train.log 2>&1 &
 
+#python setup.py build_ext --inplace
