@@ -87,7 +87,9 @@ def _get_detections(generator, model, score_threshold=0.05, max_detections=100, 
 
         # run network
         boxes, scores, *_, labels = model.predict_on_batch([np.expand_dims(image, axis=0)])
-        boxes /= scale
+        boxes = boxes.numpy() / scale   
+        scores = scores.numpy()         
+        labels = labels.numpy()   
         boxes[:, :, 0] = np.clip(boxes[:, :, 0], 0, w - 1)
         boxes[:, :, 1] = np.clip(boxes[:, :, 1], 0, h - 1)
         boxes[:, :, 2] = np.clip(boxes[:, :, 2], 0, w - 1)
