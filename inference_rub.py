@@ -98,10 +98,11 @@ def main():
 
         image, scale = preprocess_image(image, image_size=image_size)
         # run network
-        start = time.time()
+
         boxes, scores, labels = model.predict_on_batch([np.expand_dims(image, axis=0)])
-        boxes, scores, labels = np.squeeze(boxes), np.squeeze(scores), np.squeeze(labels)
-        print("cost time:",time.time() - start)
+        boxes_tmp, scores, labels = np.squeeze(boxes), np.squeeze(scores), np.squeeze(labels)
+        
+        boxes = boxes_tmp.copy()
         boxes = postprocess_boxes(boxes=boxes, scale=scale, height=h, width=w)
 
         #print(boxes, scores)
@@ -112,11 +113,21 @@ def main():
 
         # select indices which have a score above the threshold
         indices = np.where(scores[:] > score_threshold)[0]
+        print("---before indices")
+        print(boxes)
+        print(scores)
+        print(labels)
+        # boxes = boxes[indices]
+        # labels = labels[indices]
+        # scores = scores[indices]
+        
         # select those detections
         boxes = boxes[indices]
         labels = labels[indices]
+        print(boxes)
+        print(scores)
+        print(labels)
 
-        print(boxes[0],scores[0],labels[0])
 
         draw_boxes(src_image, boxes, scores, labels, colors, classes)
 
