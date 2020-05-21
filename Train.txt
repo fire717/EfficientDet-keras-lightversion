@@ -6,3 +6,7 @@ python train.py --snapshot imagenet --phi 0 --gpu 0 --random-transform --compute
 
 
 #python setup.py build_ext --inplace
+
+
+## test
+python train.py --snapshot imagenet --phi 0 --gpu 0 --random-transform --compute-val-loss --freeze-backbone --epochs 2 --batch-size 16 --steps 10 --save_path "./models/" wheat "/home/AlgorithmicGroup/yw/workshop/cloth_det/data/wheat" "/home/AlgorithmicGroup/yw/workshop/cloth_det/data/"

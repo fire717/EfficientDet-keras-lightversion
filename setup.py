@@ -1,8 +1,8 @@
 from distutils.core import setup
 from Cython.Build import cythonize
-import numpy
+import numpy as np
 
 setup(
-    ext_modules=cythonize("utils/compute_overlap.pyx"),
-    include_dirs=[numpy.get_include()]
+    ext_modules=cythonize("compute_overlap.pyx"),
+    include_dirs=[np.get_include()]
 )
