@@ -7,7 +7,7 @@ This repo is a light version of the original one, remove some script.
 
 * change to tf2.1.0
 * merge into one file for kaggle kernel
-
+* relace progressbar2 with tqdm
 
 
 ### Run
