@@ -17,7 +17,6 @@ limitations under the License.
 import cv2
 import numpy as np
 
-from .colors import label_color
 
 
 def draw_box(image, box, color, thickness=2):
@@ -100,7 +99,7 @@ def draw_annotations(image, annotations, color=(0, 255, 0), label_to_name=None):
 
     for i in range(annotations['bboxes'].shape[0]):
         label   = annotations['labels'][i]
-        c       = color if color is not None else label_color(label)
+        c       = color if color is not None else (0, 255, 0)
         caption = '{}'.format(label_to_name(label) if label_to_name else label)
         draw_caption(image, annotations['bboxes'][i], caption)
         draw_box(image, annotations['bboxes'][i], color=c)
