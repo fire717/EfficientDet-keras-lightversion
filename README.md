@@ -8,6 +8,7 @@ This repo is a light version of the original one, remove some script.
 * change to tf2.1.0
 * merge into one file for kaggle kernel
 * relace progressbar2 with tqdm
+* add earlystop,save best model,reduce lr
 
 
 ### Run
@@ -18,3 +19,5 @@ This repo is a light version of the original one, remove some script.
 
 ### Result
 1. efficientd0 valmap0.8695 board0.5366
+2. efficientd1 valmap0.9037
+3. efficientd2 valmap0.9148
