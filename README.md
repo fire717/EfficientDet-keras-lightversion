@@ -13,4 +13,8 @@ This repo is a light version of the original one, remove some script.
 ### Run
 1. python setup_gen_overlap.py
 2. python setup.py build_ext --inplace
-3. run python train.py like train.txt
+3. run python train.py
+
+
+### Result
+1. efficientd0 valmap0.8695 board0.5366
