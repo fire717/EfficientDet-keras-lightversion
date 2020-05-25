@@ -4,12 +4,12 @@
 {
     "distutils": {
         "depends": [],
-        "name": "utils.compute_overlap",
+        "name": "compute_overlap",
         "sources": [
-            "utils/compute_overlap.pyx"
+            "compute_overlap.pyx"
         ]
     },
-    "module_name": "utils.compute_overlap"
+    "module_name": "compute_overlap"
 }
 END: Cython Metadata */
 
@@ -604,8 +604,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__utils__compute_overlap
-#define __PYX_HAVE_API__utils__compute_overlap
+#define __PYX_HAVE__compute_overlap
+#define __PYX_HAVE_API__compute_overlap
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -841,7 +841,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "utils/compute_overlap.pyx",
+  "compute_overlap.pyx",
   "__init__.pxd",
   "type.pxd",
 };
@@ -1672,13 +1672,13 @@ static PyTypeObject *__pyx_ptype_5numpy_ndarray = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, char *, char *, int *); /*proto*/
 
-/* Module declarations from 'utils.compute_overlap' */
+/* Module declarations from 'compute_overlap' */
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
-#define __Pyx_MODULE_NAME "utils.compute_overlap"
-extern int __pyx_module_is_main_utils__compute_overlap;
-int __pyx_module_is_main_utils__compute_overlap = 0;
+#define __Pyx_MODULE_NAME "compute_overlap"
+extern int __pyx_module_is_main_compute_overlap;
+int __pyx_module_is_main_compute_overlap = 0;
 
-/* Implementation of 'utils.compute_overlap' */
+/* Implementation of 'compute_overlap' */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_RuntimeError;
@@ -1709,8 +1709,7 @@ static const char __pyx_k_query_boxes[] = "query_boxes";
 static const char __pyx_k_RuntimeError[] = "RuntimeError";
 static const char __pyx_k_compute_overlap[] = "compute_overlap";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_utils_compute_overlap[] = "utils.compute_overlap";
-static const char __pyx_k_utils_compute_overlap_pyx[] = "utils/compute_overlap.pyx";
+static const char __pyx_k_compute_overlap_pyx[] = "compute_overlap.pyx";
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_unknown_dtype_code_in_numpy_pxd[] = "unknown dtype code in numpy.pxd (%d)";
@@ -1731,6 +1730,7 @@ static PyObject *__pyx_n_s_box_area;
 static PyObject *__pyx_n_s_boxes;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_compute_overlap;
+static PyObject *__pyx_kp_s_compute_overlap_pyx;
 static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_float64;
 static PyObject *__pyx_n_s_ih;
@@ -1752,10 +1752,8 @@ static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_ua;
 static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
-static PyObject *__pyx_n_s_utils_compute_overlap;
-static PyObject *__pyx_kp_s_utils_compute_overlap_pyx;
 static PyObject *__pyx_n_s_zeros;
-static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_boxes, PyArrayObject *__pyx_v_query_boxes); /* proto */
+static PyObject *__pyx_pf_15compute_overlap_compute_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_boxes, PyArrayObject *__pyx_v_query_boxes); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_tuple_;
@@ -1769,19 +1767,18 @@ static PyObject *__pyx_tuple__8;
 static PyObject *__pyx_codeobj__9;
 /* Late includes */
 
-/* "utils/compute_overlap.pyx":13
- * 
- * 
- * def compute_overlap(             # <<<<<<<<<<<<<<
- *     np.ndarray[double, ndim=2] boxes,
- *     np.ndarray[double, ndim=2] query_boxes
+/* "compute_overlap.pyx":4
+ * import numpy as np
+ * cimport numpy as np
+ * def compute_overlap(np.ndarray[double, ndim=2] boxes,np.ndarray[double, ndim=2] query_boxes):             # <<<<<<<<<<<<<<
+ *     cdef unsigned int N = boxes.shape[0]
+ *     cdef unsigned int K = query_boxes.shape[0]
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5utils_15compute_overlap_1compute_overlap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_5utils_15compute_overlap_compute_overlap[] = "\n    Args\n        a: (N, 4) ndarray of float\n        b: (K, 4) ndarray of float\n\n    Returns\n        overlaps: (N, K) ndarray of overlap between boxes and query_boxes\n    ";
-static PyMethodDef __pyx_mdef_5utils_15compute_overlap_1compute_overlap = {"compute_overlap", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_5utils_15compute_overlap_1compute_overlap, METH_VARARGS|METH_KEYWORDS, __pyx_doc_5utils_15compute_overlap_compute_overlap};
-static PyObject *__pyx_pw_5utils_15compute_overlap_1compute_overlap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_15compute_overlap_1compute_overlap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_15compute_overlap_1compute_overlap = {"compute_overlap", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_15compute_overlap_1compute_overlap, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_15compute_overlap_1compute_overlap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_boxes = 0;
   PyArrayObject *__pyx_v_query_boxes = 0;
   int __pyx_lineno = 0;
@@ -1813,11 +1810,11 @@ static PyObject *__pyx_pw_5utils_15compute_overlap_1compute_overlap(PyObject *__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_query_boxes)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("compute_overlap", 1, 2, 2, 1); __PYX_ERR(0, 13, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("compute_overlap", 1, 2, 2, 1); __PYX_ERR(0, 4, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "compute_overlap") < 0)) __PYX_ERR(0, 13, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "compute_overlap") < 0)) __PYX_ERR(0, 4, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -1830,15 +1827,15 @@ static PyObject *__pyx_pw_5utils_15compute_overlap_1compute_overlap(PyObject *__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("compute_overlap", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 13, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("compute_overlap", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 4, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("utils.compute_overlap.compute_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("compute_overlap.compute_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_boxes), __pyx_ptype_5numpy_ndarray, 1, "boxes", 0))) __PYX_ERR(0, 14, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_query_boxes), __pyx_ptype_5numpy_ndarray, 1, "query_boxes", 0))) __PYX_ERR(0, 15, __pyx_L1_error)
-  __pyx_r = __pyx_pf_5utils_15compute_overlap_compute_overlap(__pyx_self, __pyx_v_boxes, __pyx_v_query_boxes);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_boxes), __pyx_ptype_5numpy_ndarray, 1, "boxes", 0))) __PYX_ERR(0, 4, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_query_boxes), __pyx_ptype_5numpy_ndarray, 1, "query_boxes", 0))) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_r = __pyx_pf_15compute_overlap_compute_overlap(__pyx_self, __pyx_v_boxes, __pyx_v_query_boxes);
 
   /* function exit code */
   goto __pyx_L0;
@@ -1849,7 +1846,7 @@ static PyObject *__pyx_pw_5utils_15compute_overlap_1compute_overlap(PyObject *__
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_boxes, PyArrayObject *__pyx_v_query_boxes) {
+static PyObject *__pyx_pf_15compute_overlap_compute_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_boxes, PyArrayObject *__pyx_v_query_boxes) {
   unsigned int __pyx_v_N;
   unsigned int __pyx_v_K;
   PyArrayObject *__pyx_v_overlaps = 0;
@@ -1911,26 +1908,26 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
   __pyx_pybuffernd_query_boxes.rcbuffer = &__pyx_pybuffer_query_boxes;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_boxes.rcbuffer->pybuffer, (PyObject*)__pyx_v_boxes, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 13, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_boxes.rcbuffer->pybuffer, (PyObject*)__pyx_v_boxes, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 4, __pyx_L1_error)
   }
   __pyx_pybuffernd_boxes.diminfo[0].strides = __pyx_pybuffernd_boxes.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_boxes.diminfo[0].shape = __pyx_pybuffernd_boxes.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_boxes.diminfo[1].strides = __pyx_pybuffernd_boxes.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_boxes.diminfo[1].shape = __pyx_pybuffernd_boxes.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_query_boxes.rcbuffer->pybuffer, (PyObject*)__pyx_v_query_boxes, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 13, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_query_boxes.rcbuffer->pybuffer, (PyObject*)__pyx_v_query_boxes, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 4, __pyx_L1_error)
   }
   __pyx_pybuffernd_query_boxes.diminfo[0].strides = __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_query_boxes.diminfo[0].shape = __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_query_boxes.diminfo[1].strides = __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_query_boxes.diminfo[1].shape = __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.shape[1];
 
-  /* "utils/compute_overlap.pyx":25
- *         overlaps: (N, K) ndarray of overlap between boxes and query_boxes
- *     """
+  /* "compute_overlap.pyx":5
+ * cimport numpy as np
+ * def compute_overlap(np.ndarray[double, ndim=2] boxes,np.ndarray[double, ndim=2] query_boxes):
  *     cdef unsigned int N = boxes.shape[0]             # <<<<<<<<<<<<<<
  *     cdef unsigned int K = query_boxes.shape[0]
  *     cdef np.ndarray[double, ndim=2] overlaps = np.zeros((N, K), dtype=np.float64)
  */
   __pyx_v_N = (__pyx_v_boxes->dimensions[0]);
 
-  /* "utils/compute_overlap.pyx":26
- *     """
+  /* "compute_overlap.pyx":6
+ * def compute_overlap(np.ndarray[double, ndim=2] boxes,np.ndarray[double, ndim=2] query_boxes):
  *     cdef unsigned int N = boxes.shape[0]
  *     cdef unsigned int K = query_boxes.shape[0]             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[double, ndim=2] overlaps = np.zeros((N, K), dtype=np.float64)
@@ -1938,23 +1935,23 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
  */
   __pyx_v_K = (__pyx_v_query_boxes->dimensions[0]);
 
-  /* "utils/compute_overlap.pyx":27
+  /* "compute_overlap.pyx":7
  *     cdef unsigned int N = boxes.shape[0]
  *     cdef unsigned int K = query_boxes.shape[0]
  *     cdef np.ndarray[double, ndim=2] overlaps = np.zeros((N, K), dtype=np.float64)             # <<<<<<<<<<<<<<
  *     cdef double iw, ih, box_area
  *     cdef double ua
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_From_unsigned_int(__pyx_v_K); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_unsigned_int(__pyx_v_K); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -1962,32 +1959,32 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
   PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 7, __pyx_L1_error)
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_5);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_overlaps.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_overlaps = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_overlaps.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 27, __pyx_L1_error)
+      __PYX_ERR(0, 7, __pyx_L1_error)
     } else {__pyx_pybuffernd_overlaps.diminfo[0].strides = __pyx_pybuffernd_overlaps.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_overlaps.diminfo[0].shape = __pyx_pybuffernd_overlaps.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_overlaps.diminfo[1].strides = __pyx_pybuffernd_overlaps.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_overlaps.diminfo[1].shape = __pyx_pybuffernd_overlaps.rcbuffer->pybuffer.shape[1];
     }
   }
@@ -1995,24 +1992,24 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
   __pyx_v_overlaps = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "utils/compute_overlap.pyx":31
+  /* "compute_overlap.pyx":11
  *     cdef double ua
  *     cdef unsigned int k, n
  *     for k in range(K):             # <<<<<<<<<<<<<<
- *         box_area = (
- *             (query_boxes[k, 2] - query_boxes[k, 0] + 1) *
+ *         box_area = ((query_boxes[k, 2] - query_boxes[k, 0] + 1) *(query_boxes[k, 3] - query_boxes[k, 1] + 1))
+ *         for n in range(N):
  */
   __pyx_t_7 = __pyx_v_K;
   __pyx_t_8 = __pyx_t_7;
   for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
     __pyx_v_k = __pyx_t_9;
 
-    /* "utils/compute_overlap.pyx":33
+    /* "compute_overlap.pyx":12
+ *     cdef unsigned int k, n
  *     for k in range(K):
- *         box_area = (
- *             (query_boxes[k, 2] - query_boxes[k, 0] + 1) *             # <<<<<<<<<<<<<<
- *             (query_boxes[k, 3] - query_boxes[k, 1] + 1)
- *         )
+ *         box_area = ((query_boxes[k, 2] - query_boxes[k, 0] + 1) *(query_boxes[k, 3] - query_boxes[k, 1] + 1))             # <<<<<<<<<<<<<<
+ *         for n in range(N):
+ *             iw = (min(boxes[n, 2], query_boxes[k, 2]) -max(boxes[n, 0], query_boxes[k, 0]) + 1)
  */
     __pyx_t_10 = __pyx_v_k;
     __pyx_t_11 = 2;
@@ -2024,7 +2021,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
     } else if (unlikely(__pyx_t_11 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
     if (unlikely(__pyx_t_12 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_12);
-      __PYX_ERR(0, 33, __pyx_L1_error)
+      __PYX_ERR(0, 12, __pyx_L1_error)
     }
     __pyx_t_13 = __pyx_v_k;
     __pyx_t_14 = 0;
@@ -2036,16 +2033,8 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
     } else if (unlikely(__pyx_t_14 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
     if (unlikely(__pyx_t_12 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_12);
-      __PYX_ERR(0, 33, __pyx_L1_error)
+      __PYX_ERR(0, 12, __pyx_L1_error)
     }
-
-    /* "utils/compute_overlap.pyx":34
- *         box_area = (
- *             (query_boxes[k, 2] - query_boxes[k, 0] + 1) *
- *             (query_boxes[k, 3] - query_boxes[k, 1] + 1)             # <<<<<<<<<<<<<<
- *         )
- *         for n in range(N):
- */
     __pyx_t_15 = __pyx_v_k;
     __pyx_t_16 = 3;
     __pyx_t_12 = -1;
@@ -2056,7 +2045,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
     } else if (unlikely(__pyx_t_16 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
     if (unlikely(__pyx_t_12 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_12);
-      __PYX_ERR(0, 34, __pyx_L1_error)
+      __PYX_ERR(0, 12, __pyx_L1_error)
     }
     __pyx_t_17 = __pyx_v_k;
     __pyx_t_18 = 1;
@@ -2068,36 +2057,28 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
     } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
     if (unlikely(__pyx_t_12 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_12);
-      __PYX_ERR(0, 34, __pyx_L1_error)
+      __PYX_ERR(0, 12, __pyx_L1_error)
     }
-
-    /* "utils/compute_overlap.pyx":33
- *     for k in range(K):
- *         box_area = (
- *             (query_boxes[k, 2] - query_boxes[k, 0] + 1) *             # <<<<<<<<<<<<<<
- *             (query_boxes[k, 3] - query_boxes[k, 1] + 1)
- *         )
- */
     __pyx_v_box_area = ((((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_11, __pyx_pybuffernd_query_boxes.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_query_boxes.diminfo[1].strides))) + 1.0) * (((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_16, __pyx_pybuffernd_query_boxes.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_query_boxes.diminfo[1].strides))) + 1.0));
 
-    /* "utils/compute_overlap.pyx":36
- *             (query_boxes[k, 3] - query_boxes[k, 1] + 1)
- *         )
+    /* "compute_overlap.pyx":13
+ *     for k in range(K):
+ *         box_area = ((query_boxes[k, 2] - query_boxes[k, 0] + 1) *(query_boxes[k, 3] - query_boxes[k, 1] + 1))
  *         for n in range(N):             # <<<<<<<<<<<<<<
- *             iw = (
- *                 min(boxes[n, 2], query_boxes[k, 2]) -
+ *             iw = (min(boxes[n, 2], query_boxes[k, 2]) -max(boxes[n, 0], query_boxes[k, 0]) + 1)
+ *             if iw > 0:
  */
     __pyx_t_19 = __pyx_v_N;
     __pyx_t_20 = __pyx_t_19;
     for (__pyx_t_21 = 0; __pyx_t_21 < __pyx_t_20; __pyx_t_21+=1) {
       __pyx_v_n = __pyx_t_21;
 
-      /* "utils/compute_overlap.pyx":38
+      /* "compute_overlap.pyx":14
+ *         box_area = ((query_boxes[k, 2] - query_boxes[k, 0] + 1) *(query_boxes[k, 3] - query_boxes[k, 1] + 1))
  *         for n in range(N):
- *             iw = (
- *                 min(boxes[n, 2], query_boxes[k, 2]) -             # <<<<<<<<<<<<<<
- *                 max(boxes[n, 0], query_boxes[k, 0]) + 1
- *             )
+ *             iw = (min(boxes[n, 2], query_boxes[k, 2]) -max(boxes[n, 0], query_boxes[k, 0]) + 1)             # <<<<<<<<<<<<<<
+ *             if iw > 0:
+ *                 ih = (min(boxes[n, 3], query_boxes[k, 3]) -max(boxes[n, 1], query_boxes[k, 1]) + 1)
  */
       __pyx_t_17 = __pyx_v_k;
       __pyx_t_18 = 2;
@@ -2109,7 +2090,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
       } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
       if (unlikely(__pyx_t_12 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_12);
-        __PYX_ERR(0, 38, __pyx_L1_error)
+        __PYX_ERR(0, 14, __pyx_L1_error)
       }
       __pyx_t_22 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_query_boxes.diminfo[1].strides));
       __pyx_t_17 = __pyx_v_n;
@@ -2122,7 +2103,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
       } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
       if (unlikely(__pyx_t_12 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_12);
-        __PYX_ERR(0, 38, __pyx_L1_error)
+        __PYX_ERR(0, 14, __pyx_L1_error)
       }
       __pyx_t_23 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_boxes.diminfo[1].strides));
       if (((__pyx_t_22 < __pyx_t_23) != 0)) {
@@ -2130,14 +2111,6 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
       } else {
         __pyx_t_24 = __pyx_t_23;
       }
-
-      /* "utils/compute_overlap.pyx":39
- *             iw = (
- *                 min(boxes[n, 2], query_boxes[k, 2]) -
- *                 max(boxes[n, 0], query_boxes[k, 0]) + 1             # <<<<<<<<<<<<<<
- *             )
- *             if iw > 0:
- */
       __pyx_t_17 = __pyx_v_k;
       __pyx_t_18 = 0;
       __pyx_t_12 = -1;
@@ -2148,7 +2121,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
       } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
       if (unlikely(__pyx_t_12 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_12);
-        __PYX_ERR(0, 39, __pyx_L1_error)
+        __PYX_ERR(0, 14, __pyx_L1_error)
       }
       __pyx_t_22 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_query_boxes.diminfo[1].strides));
       __pyx_t_17 = __pyx_v_n;
@@ -2161,7 +2134,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
       } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
       if (unlikely(__pyx_t_12 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_12);
-        __PYX_ERR(0, 39, __pyx_L1_error)
+        __PYX_ERR(0, 14, __pyx_L1_error)
       }
       __pyx_t_23 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_boxes.diminfo[1].strides));
       if (((__pyx_t_22 > __pyx_t_23) != 0)) {
@@ -2169,32 +2142,24 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
       } else {
         __pyx_t_25 = __pyx_t_23;
       }
-
-      /* "utils/compute_overlap.pyx":38
- *         for n in range(N):
- *             iw = (
- *                 min(boxes[n, 2], query_boxes[k, 2]) -             # <<<<<<<<<<<<<<
- *                 max(boxes[n, 0], query_boxes[k, 0]) + 1
- *             )
- */
       __pyx_v_iw = ((__pyx_t_24 - __pyx_t_25) + 1.0);
 
-      /* "utils/compute_overlap.pyx":41
- *                 max(boxes[n, 0], query_boxes[k, 0]) + 1
- *             )
+      /* "compute_overlap.pyx":15
+ *         for n in range(N):
+ *             iw = (min(boxes[n, 2], query_boxes[k, 2]) -max(boxes[n, 0], query_boxes[k, 0]) + 1)
  *             if iw > 0:             # <<<<<<<<<<<<<<
- *                 ih = (
- *                     min(boxes[n, 3], query_boxes[k, 3]) -
+ *                 ih = (min(boxes[n, 3], query_boxes[k, 3]) -max(boxes[n, 1], query_boxes[k, 1]) + 1)
+ *                 if ih > 0:
  */
       __pyx_t_26 = ((__pyx_v_iw > 0.0) != 0);
       if (__pyx_t_26) {
 
-        /* "utils/compute_overlap.pyx":43
+        /* "compute_overlap.pyx":16
+ *             iw = (min(boxes[n, 2], query_boxes[k, 2]) -max(boxes[n, 0], query_boxes[k, 0]) + 1)
  *             if iw > 0:
- *                 ih = (
- *                     min(boxes[n, 3], query_boxes[k, 3]) -             # <<<<<<<<<<<<<<
- *                     max(boxes[n, 1], query_boxes[k, 1]) + 1
- *                 )
+ *                 ih = (min(boxes[n, 3], query_boxes[k, 3]) -max(boxes[n, 1], query_boxes[k, 1]) + 1)             # <<<<<<<<<<<<<<
+ *                 if ih > 0:
+ *                     ua = np.float64((boxes[n, 2] - boxes[n, 0] + 1) *(boxes[n, 3] - boxes[n, 1] + 1) +box_area - iw * ih)
  */
         __pyx_t_17 = __pyx_v_k;
         __pyx_t_18 = 3;
@@ -2206,7 +2171,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
         } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
         if (unlikely(__pyx_t_12 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_12);
-          __PYX_ERR(0, 43, __pyx_L1_error)
+          __PYX_ERR(0, 16, __pyx_L1_error)
         }
         __pyx_t_25 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_query_boxes.diminfo[1].strides));
         __pyx_t_17 = __pyx_v_n;
@@ -2219,7 +2184,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
         } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
         if (unlikely(__pyx_t_12 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_12);
-          __PYX_ERR(0, 43, __pyx_L1_error)
+          __PYX_ERR(0, 16, __pyx_L1_error)
         }
         __pyx_t_24 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_boxes.diminfo[1].strides));
         if (((__pyx_t_25 < __pyx_t_24) != 0)) {
@@ -2227,14 +2192,6 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
         } else {
           __pyx_t_22 = __pyx_t_24;
         }
-
-        /* "utils/compute_overlap.pyx":44
- *                 ih = (
- *                     min(boxes[n, 3], query_boxes[k, 3]) -
- *                     max(boxes[n, 1], query_boxes[k, 1]) + 1             # <<<<<<<<<<<<<<
- *                 )
- *                 if ih > 0:
- */
         __pyx_t_17 = __pyx_v_k;
         __pyx_t_18 = 1;
         __pyx_t_12 = -1;
@@ -2245,7 +2202,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
         } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_query_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
         if (unlikely(__pyx_t_12 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_12);
-          __PYX_ERR(0, 44, __pyx_L1_error)
+          __PYX_ERR(0, 16, __pyx_L1_error)
         }
         __pyx_t_25 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_query_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_query_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_query_boxes.diminfo[1].strides));
         __pyx_t_17 = __pyx_v_n;
@@ -2258,7 +2215,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
         } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
         if (unlikely(__pyx_t_12 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_12);
-          __PYX_ERR(0, 44, __pyx_L1_error)
+          __PYX_ERR(0, 16, __pyx_L1_error)
         }
         __pyx_t_24 = (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_boxes.diminfo[1].strides));
         if (((__pyx_t_25 > __pyx_t_24) != 0)) {
@@ -2266,46 +2223,30 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
         } else {
           __pyx_t_23 = __pyx_t_24;
         }
-
-        /* "utils/compute_overlap.pyx":43
- *             if iw > 0:
- *                 ih = (
- *                     min(boxes[n, 3], query_boxes[k, 3]) -             # <<<<<<<<<<<<<<
- *                     max(boxes[n, 1], query_boxes[k, 1]) + 1
- *                 )
- */
         __pyx_v_ih = ((__pyx_t_22 - __pyx_t_23) + 1.0);
 
-        /* "utils/compute_overlap.pyx":46
- *                     max(boxes[n, 1], query_boxes[k, 1]) + 1
- *                 )
+        /* "compute_overlap.pyx":17
+ *             if iw > 0:
+ *                 ih = (min(boxes[n, 3], query_boxes[k, 3]) -max(boxes[n, 1], query_boxes[k, 1]) + 1)
  *                 if ih > 0:             # <<<<<<<<<<<<<<
- *                     ua = np.float64(
- *                         (boxes[n, 2] - boxes[n, 0] + 1) *
+ *                     ua = np.float64((boxes[n, 2] - boxes[n, 0] + 1) *(boxes[n, 3] - boxes[n, 1] + 1) +box_area - iw * ih)
+ *                     overlaps[n, k] = iw * ih / ua
  */
         __pyx_t_26 = ((__pyx_v_ih > 0.0) != 0);
         if (__pyx_t_26) {
 
-          /* "utils/compute_overlap.pyx":47
- *                 )
+          /* "compute_overlap.pyx":18
+ *                 ih = (min(boxes[n, 3], query_boxes[k, 3]) -max(boxes[n, 1], query_boxes[k, 1]) + 1)
  *                 if ih > 0:
- *                     ua = np.float64(             # <<<<<<<<<<<<<<
- *                         (boxes[n, 2] - boxes[n, 0] + 1) *
- *                         (boxes[n, 3] - boxes[n, 1] + 1) +
+ *                     ua = np.float64((boxes[n, 2] - boxes[n, 0] + 1) *(boxes[n, 3] - boxes[n, 1] + 1) +box_area - iw * ih)             # <<<<<<<<<<<<<<
+ *                     overlaps[n, k] = iw * ih / ua
+ *     return overlaps
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 18, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-          /* "utils/compute_overlap.pyx":48
- *                 if ih > 0:
- *                     ua = np.float64(
- *                         (boxes[n, 2] - boxes[n, 0] + 1) *             # <<<<<<<<<<<<<<
- *                         (boxes[n, 3] - boxes[n, 1] + 1) +
- *                         box_area - iw * ih
- */
           __pyx_t_17 = __pyx_v_n;
           __pyx_t_18 = 2;
           __pyx_t_12 = -1;
@@ -2316,7 +2257,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
           } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
           if (unlikely(__pyx_t_12 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_12);
-            __PYX_ERR(0, 48, __pyx_L1_error)
+            __PYX_ERR(0, 18, __pyx_L1_error)
           }
           __pyx_t_15 = __pyx_v_n;
           __pyx_t_16 = 0;
@@ -2328,16 +2269,8 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
           } else if (unlikely(__pyx_t_16 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
           if (unlikely(__pyx_t_12 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_12);
-            __PYX_ERR(0, 48, __pyx_L1_error)
+            __PYX_ERR(0, 18, __pyx_L1_error)
           }
-
-          /* "utils/compute_overlap.pyx":49
- *                     ua = np.float64(
- *                         (boxes[n, 2] - boxes[n, 0] + 1) *
- *                         (boxes[n, 3] - boxes[n, 1] + 1) +             # <<<<<<<<<<<<<<
- *                         box_area - iw * ih
- *                     )
- */
           __pyx_t_13 = __pyx_v_n;
           __pyx_t_14 = 3;
           __pyx_t_12 = -1;
@@ -2348,7 +2281,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
           } else if (unlikely(__pyx_t_14 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
           if (unlikely(__pyx_t_12 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_12);
-            __PYX_ERR(0, 49, __pyx_L1_error)
+            __PYX_ERR(0, 18, __pyx_L1_error)
           }
           __pyx_t_10 = __pyx_v_n;
           __pyx_t_11 = 1;
@@ -2360,17 +2293,9 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
           } else if (unlikely(__pyx_t_11 >= __pyx_pybuffernd_boxes.diminfo[1].shape)) __pyx_t_12 = 1;
           if (unlikely(__pyx_t_12 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_12);
-            __PYX_ERR(0, 49, __pyx_L1_error)
+            __PYX_ERR(0, 18, __pyx_L1_error)
           }
-
-          /* "utils/compute_overlap.pyx":50
- *                         (boxes[n, 2] - boxes[n, 0] + 1) *
- *                         (boxes[n, 3] - boxes[n, 1] + 1) +
- *                         box_area - iw * ih             # <<<<<<<<<<<<<<
- *                     )
- *                     overlaps[n, k] = iw * ih / ua
- */
-          __pyx_t_4 = PyFloat_FromDouble(((((((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_boxes.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_16, __pyx_pybuffernd_boxes.diminfo[1].strides))) + 1.0) * (((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_boxes.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_11, __pyx_pybuffernd_boxes.diminfo[1].strides))) + 1.0)) + __pyx_v_box_area) - (__pyx_v_iw * __pyx_v_ih))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
+          __pyx_t_4 = PyFloat_FromDouble(((((((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_boxes.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_16, __pyx_pybuffernd_boxes.diminfo[1].strides))) + 1.0) * (((*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_boxes.diminfo[1].strides)) - (*__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_boxes.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_boxes.diminfo[0].strides, __pyx_t_11, __pyx_pybuffernd_boxes.diminfo[1].strides))) + 1.0)) + __pyx_v_box_area) - (__pyx_v_iw * __pyx_v_ih))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 18, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           __pyx_t_2 = NULL;
           if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -2385,31 +2310,23 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
           __pyx_t_5 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 47, __pyx_L1_error)
+          if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-          /* "utils/compute_overlap.pyx":47
- *                 )
- *                 if ih > 0:
- *                     ua = np.float64(             # <<<<<<<<<<<<<<
- *                         (boxes[n, 2] - boxes[n, 0] + 1) *
- *                         (boxes[n, 3] - boxes[n, 1] + 1) +
- */
-          __pyx_t_23 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_23 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L1_error)
+          __pyx_t_23 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_23 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 18, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
           __pyx_v_ua = __pyx_t_23;
 
-          /* "utils/compute_overlap.pyx":52
- *                         box_area - iw * ih
- *                     )
+          /* "compute_overlap.pyx":19
+ *                 if ih > 0:
+ *                     ua = np.float64((boxes[n, 2] - boxes[n, 0] + 1) *(boxes[n, 3] - boxes[n, 1] + 1) +box_area - iw * ih)
  *                     overlaps[n, k] = iw * ih / ua             # <<<<<<<<<<<<<<
  *     return overlaps
  */
           __pyx_t_23 = (__pyx_v_iw * __pyx_v_ih);
           if (unlikely(__pyx_v_ua == 0)) {
             PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-            __PYX_ERR(0, 52, __pyx_L1_error)
+            __PYX_ERR(0, 19, __pyx_L1_error)
           }
           __pyx_t_10 = __pyx_v_n;
           __pyx_t_13 = __pyx_v_k;
@@ -2418,32 +2335,32 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
           if (unlikely(__pyx_t_13 >= (size_t)__pyx_pybuffernd_overlaps.diminfo[1].shape)) __pyx_t_12 = 1;
           if (unlikely(__pyx_t_12 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_12);
-            __PYX_ERR(0, 52, __pyx_L1_error)
+            __PYX_ERR(0, 19, __pyx_L1_error)
           }
           *__Pyx_BufPtrStrided2d(double *, __pyx_pybuffernd_overlaps.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_overlaps.diminfo[0].strides, __pyx_t_13, __pyx_pybuffernd_overlaps.diminfo[1].strides) = (__pyx_t_23 / __pyx_v_ua);
 
-          /* "utils/compute_overlap.pyx":46
- *                     max(boxes[n, 1], query_boxes[k, 1]) + 1
- *                 )
+          /* "compute_overlap.pyx":17
+ *             if iw > 0:
+ *                 ih = (min(boxes[n, 3], query_boxes[k, 3]) -max(boxes[n, 1], query_boxes[k, 1]) + 1)
  *                 if ih > 0:             # <<<<<<<<<<<<<<
- *                     ua = np.float64(
- *                         (boxes[n, 2] - boxes[n, 0] + 1) *
+ *                     ua = np.float64((boxes[n, 2] - boxes[n, 0] + 1) *(boxes[n, 3] - boxes[n, 1] + 1) +box_area - iw * ih)
+ *                     overlaps[n, k] = iw * ih / ua
  */
         }
 
-        /* "utils/compute_overlap.pyx":41
- *                 max(boxes[n, 0], query_boxes[k, 0]) + 1
- *             )
+        /* "compute_overlap.pyx":15
+ *         for n in range(N):
+ *             iw = (min(boxes[n, 2], query_boxes[k, 2]) -max(boxes[n, 0], query_boxes[k, 0]) + 1)
  *             if iw > 0:             # <<<<<<<<<<<<<<
- *                 ih = (
- *                     min(boxes[n, 3], query_boxes[k, 3]) -
+ *                 ih = (min(boxes[n, 3], query_boxes[k, 3]) -max(boxes[n, 1], query_boxes[k, 1]) + 1)
+ *                 if ih > 0:
  */
       }
     }
   }
 
-  /* "utils/compute_overlap.pyx":53
- *                     )
+  /* "compute_overlap.pyx":20
+ *                     ua = np.float64((boxes[n, 2] - boxes[n, 0] + 1) *(boxes[n, 3] - boxes[n, 1] + 1) +box_area - iw * ih)
  *                     overlaps[n, k] = iw * ih / ua
  *     return overlaps             # <<<<<<<<<<<<<<
  */
@@ -2452,12 +2369,12 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
   __pyx_r = ((PyObject *)__pyx_v_overlaps);
   goto __pyx_L0;
 
-  /* "utils/compute_overlap.pyx":13
- * 
- * 
- * def compute_overlap(             # <<<<<<<<<<<<<<
- *     np.ndarray[double, ndim=2] boxes,
- *     np.ndarray[double, ndim=2] query_boxes
+  /* "compute_overlap.pyx":4
+ * import numpy as np
+ * cimport numpy as np
+ * def compute_overlap(np.ndarray[double, ndim=2] boxes,np.ndarray[double, ndim=2] query_boxes):             # <<<<<<<<<<<<<<
+ *     cdef unsigned int N = boxes.shape[0]
+ *     cdef unsigned int K = query_boxes.shape[0]
  */
 
   /* function exit code */
@@ -2475,7 +2392,7 @@ static PyObject *__pyx_pf_5utils_15compute_overlap_compute_overlap(CYTHON_UNUSED
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_overlaps.rcbuffer->pybuffer);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_query_boxes.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("utils.compute_overlap.compute_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("compute_overlap.compute_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   goto __pyx_L2;
   __pyx_L0:;
@@ -4995,6 +4912,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_boxes, __pyx_k_boxes, sizeof(__pyx_k_boxes), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_compute_overlap, __pyx_k_compute_overlap, sizeof(__pyx_k_compute_overlap), 0, 0, 1, 1},
+  {&__pyx_kp_s_compute_overlap_pyx, __pyx_k_compute_overlap_pyx, sizeof(__pyx_k_compute_overlap_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_dtype, __pyx_k_dtype, sizeof(__pyx_k_dtype), 0, 0, 1, 1},
   {&__pyx_n_s_float64, __pyx_k_float64, sizeof(__pyx_k_float64), 0, 0, 1, 1},
   {&__pyx_n_s_ih, __pyx_k_ih, sizeof(__pyx_k_ih), 0, 0, 1, 1},
@@ -5016,13 +4934,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_ua, __pyx_k_ua, sizeof(__pyx_k_ua), 0, 0, 1, 1},
   {&__pyx_kp_u_unknown_dtype_code_in_numpy_pxd, __pyx_k_unknown_dtype_code_in_numpy_pxd, sizeof(__pyx_k_unknown_dtype_code_in_numpy_pxd), 0, 1, 0, 0},
-  {&__pyx_n_s_utils_compute_overlap, __pyx_k_utils_compute_overlap, sizeof(__pyx_k_utils_compute_overlap), 0, 0, 1, 1},
-  {&__pyx_kp_s_utils_compute_overlap_pyx, __pyx_k_utils_compute_overlap_pyx, sizeof(__pyx_k_utils_compute_overlap_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_zeros, __pyx_k_zeros, sizeof(__pyx_k_zeros), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 11, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 272, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(1, 855, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 1037, __pyx_L1_error)
@@ -5112,17 +5028,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "utils/compute_overlap.pyx":13
- * 
- * 
- * def compute_overlap(             # <<<<<<<<<<<<<<
- *     np.ndarray[double, ndim=2] boxes,
- *     np.ndarray[double, ndim=2] query_boxes
+  /* "compute_overlap.pyx":4
+ * import numpy as np
+ * cimport numpy as np
+ * def compute_overlap(np.ndarray[double, ndim=2] boxes,np.ndarray[double, ndim=2] query_boxes):             # <<<<<<<<<<<<<<
+ *     cdef unsigned int N = boxes.shape[0]
+ *     cdef unsigned int K = query_boxes.shape[0]
  */
-  __pyx_tuple__8 = PyTuple_Pack(11, __pyx_n_s_boxes, __pyx_n_s_query_boxes, __pyx_n_s_N, __pyx_n_s_K, __pyx_n_s_overlaps, __pyx_n_s_iw, __pyx_n_s_ih, __pyx_n_s_box_area, __pyx_n_s_ua, __pyx_n_s_k, __pyx_n_s_n); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(11, __pyx_n_s_boxes, __pyx_n_s_query_boxes, __pyx_n_s_N, __pyx_n_s_K, __pyx_n_s_overlaps, __pyx_n_s_iw, __pyx_n_s_ih, __pyx_n_s_box_area, __pyx_n_s_ua, __pyx_n_s_k, __pyx_n_s_n); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_utils_compute_overlap_pyx, __pyx_n_s_compute_overlap, 13, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_compute_overlap_pyx, __pyx_n_s_compute_overlap, 4, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -5407,14 +5323,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_utils__compute_overlap) {
+  if (__pyx_module_is_main_compute_overlap) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "utils.compute_overlap")) {
-      if (unlikely(PyDict_SetItemString(modules, "utils.compute_overlap", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "compute_overlap")) {
+      if (unlikely(PyDict_SetItemString(modules, "compute_overlap", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -5435,34 +5351,33 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "utils/compute_overlap.pyx":9
- * 
+  /* "compute_overlap.pyx":2
  * cimport cython
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
- * 
+ * def compute_overlap(np.ndarray[double, ndim=2] boxes,np.ndarray[double, ndim=2] query_boxes):
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/compute_overlap.pyx":13
- * 
- * 
- * def compute_overlap(             # <<<<<<<<<<<<<<
- *     np.ndarray[double, ndim=2] boxes,
- *     np.ndarray[double, ndim=2] query_boxes
+  /* "compute_overlap.pyx":4
+ * import numpy as np
+ * cimport numpy as np
+ * def compute_overlap(np.ndarray[double, ndim=2] boxes,np.ndarray[double, ndim=2] query_boxes):             # <<<<<<<<<<<<<<
+ *     cdef unsigned int N = boxes.shape[0]
+ *     cdef unsigned int K = query_boxes.shape[0]
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5utils_15compute_overlap_1compute_overlap, NULL, __pyx_n_s_utils_compute_overlap); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_15compute_overlap_1compute_overlap, NULL, __pyx_n_s_compute_overlap); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_compute_overlap, __pyx_t_1) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_compute_overlap, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "utils/compute_overlap.pyx":1
- * # --------------------------------------------------------             # <<<<<<<<<<<<<<
- * # Fast R-CNN
- * # Copyright (c) 2015 Microsoft
+  /* "compute_overlap.pyx":1
+ * cimport cython             # <<<<<<<<<<<<<<
+ * import numpy as np
+ * cimport numpy as np
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5484,11 +5399,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init utils.compute_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init compute_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init utils.compute_overlap");
+    PyErr_SetString(PyExc_ImportError, "init compute_overlap");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
