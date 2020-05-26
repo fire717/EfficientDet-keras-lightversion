@@ -111,7 +111,96 @@ def postprocess_boxes(boxes, scale, height, width):
     boxes[:, 3] = np.clip(boxes[:, 3], 0, height - 1)
     return boxes
 
-def predict():
+
+def readData(data_path = "../data/wheat"):
+    df = pd.read_csv(os.path.join(data_path, "val.csv"))
+    img_names = list(set(df['image_id'].values))
+    print(len(img_names))#337
+
+    def _strToList(st):
+        return [int(float(x)) for x in st[1:-1].split(',')]
+
+    data_dict = {}
+    for img_name in img_names:
+        df_imgs = df[df['image_id']==img_name]
+        boxes = df_imgs['bbox'].values
+        data_dict[img_name] = [_strToList(x) for x in boxes]
+        
+    return data_dict
+
+
+
+
+def IOU(Reframe,GTframe):
+    x1 = Reframe[0]
+    y1 = Reframe[1]
+    width1 = Reframe[2]
+    height1 = Reframe[3]
+
+    x2 = GTframe[0]
+    y2 = GTframe[1]
+    width2 = GTframe[2]
+    height2 = GTframe[3]
+
+    endx = max(x1+width1,x2+width2)
+    startx = min(x1,x2)
+    width = width1+width2-(endx-startx)
+
+    endy = max(y1+height1,y2+height2)
+    starty = min(y1,y2)
+    height = height1+height2-(endy-starty)
+
+    if width <=0 or height <= 0:
+        ratio = 0 # 重叠率为 0 
+    else:
+        Area = width*height # 两矩形相交面积
+        Area1 = width1*height1
+        Area2 = width2*height2
+        ratio = Area*1./(Area1+Area2-Area)
+    # return IOU
+    return ratio
+
+def computeScore(img_boxes, pre_boxes):
+    threshold_values = [x/100.0 for x in range(50,76,5)]
+    scores = []
+
+    for threshold_value in threshold_values:
+        total_true = len(img_boxes)
+        TP = 0
+        FP = 0
+        FN = 0
+        find_flag = False
+        pre_boxes_copy = pre_boxes.copy()
+        for img_box in img_boxes:
+            for i,pre_box in enumerate(pre_boxes_copy):
+                iou_score = IOU(img_box, [int(x) for x in pre_box[1:]])
+                if iou_score>threshold_value:
+                    find_flag = True
+                    if i == 0:
+                        pre_boxes_copy = pre_boxes_copy[1:]
+                    elif i==len(img_boxes)-1:
+                        pre_boxes_copy = pre_boxes_copy[:-1]
+                    else:
+                        #print(pre_boxes[:i],pre_boxes[i+1:])
+                        pre_boxes_copy = pre_boxes_copy[:i]+pre_boxes_copy[i+1:]
+                    break
+            if find_flag:
+                TP+=1
+            else:
+                FN+=1
+            find_flag = False
+
+        FN = len(pre_boxes_copy)
+        score = TP/(TP+FP+FN)
+        # print(TP, FP, FN)
+        #print(score)
+        # b
+        scores.append(score)
+    #print(np.mean(scores))
+    #b
+    return np.mean(scores)
+
+def evaluate(data_dict, data_path):
     print("start...")
     phi = 0
     weighted_bifpn = False
@@ -120,7 +209,7 @@ def predict():
     image_size = image_sizes[phi]
     classes = {0:"wheat"}
     num_classes = len(classes)
-    score_threshold = 0.3
+    score_threshold = 0.7
     colors = [np.random.randint(0, 256, 3).tolist() for _ in range(num_classes)]
     _, model = efficientdet(phi=phi,
                             num_classes=num_classes,
@@ -134,10 +223,9 @@ def predict():
     print("finish load model")
     
     results = []
-    show = True
-    for image_path in glob.glob('./backup/*.jpg'):
-        print(image_path)
-        image = cv2.imread(image_path)
+
+    for img_name, img_boxes in data_dict.items():
+        image = cv2.imread(os.path.join(data_path, img_name+".jpg"))
         # BGR -> RGB
         image = image[:, :, ::-1]
         src_image = image.copy()
@@ -159,7 +247,7 @@ def predict():
         boxes = boxes_tmp.copy()
         boxes= postprocess_boxes(boxes=boxes, scale=scale, height=h, width=w)
 
-        boxes_keep_index = py_nms(boxes, scores, 0.4)
+        boxes_keep_index = py_nms(boxes, scores, 0.5)
         boxes = boxes[boxes_keep_index]
         scores = scores[boxes_keep_index]
         labels = labels[boxes_keep_index]
@@ -181,32 +269,37 @@ def predict():
                 labels_tmp = [x1,y1,x2-x1,y2-y1]
                 PredictionString += " "+str(scores[i])[:3]+" "+" ".join([str(x) for x in labels_tmp])
             
-        result = {
-            'image_id': os.path.basename(image_path).split(".")[0],
-            'PredictionString': PredictionString
-        }
-        results.append(result)
+        #results.append(result)
         
-        if show:
-            # print(boxes)
-            # print(scores)
-            # print(labels)
-            draw_boxes(src_image, boxes, scores, labels, colors, classes)
-            # show=False
-            # plt.subplots(figsize = (10,10))
-            # plt.axis('off')
-            # plt.imshow(src_image)
 
-            save_path = os.path.join('./',os.path.basename(image_path))
-            cv2.imwrite(save_path, src_image)
+        #compute
+        if len(img_boxes)==0 and len(boxes)>0:
+            score = 0
 
-    print(results[0:2])
-    test_df = pd.DataFrame(results, columns=['image_id', 'PredictionString'])
-    print(test_df.head())
-    
-    
-    
-    
-    test_df.to_csv('submission.csv', index=False)
+        elif len(boxes)==0:
+            score = 0
+        else:
+            pre_boxes = list(np.reshape(PredictionString.strip().split(" "),(-1,5)))
+            #print(img_boxes)
+            #print(pre_boxes)
+            score = computeScore(img_boxes, pre_boxes)
+        print(score)
+        results.append(score)
+    print(np.mean(results))
+        
 
-predict()
+
+
+
+
+    # print(results[0:2])
+    # test_df = pd.DataFrame(results, columns=['image_id', 'PredictionString'])
+    # print(test_df.head())
+    # test_df.to_csv('submission.csv', index=False)
+
+
+if __name__ == '__main__':
+
+    data_dict = readData()
+    print(len(data_dict))
+    evaluate(data_dict, data_path = '../data/wheat/train/')
