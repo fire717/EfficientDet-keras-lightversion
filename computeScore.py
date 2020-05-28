@@ -225,7 +225,7 @@ def evaluate(data_dict, data_path):
     image_size = image_sizes[phi]
     classes = {0:"wheat"}
     num_classes = len(classes)
-    score_threshold = 0.5
+    score_threshold = 0.6
     colors = [np.random.randint(0, 256, 3).tolist() for _ in range(num_classes)]
     _, model = efficientdet(phi=phi,
                             num_classes=num_classes,
@@ -234,7 +234,7 @@ def evaluate(data_dict, data_path):
                            freeze_bn=False,
                            detect_quadrangle=False)
 
-    model_path = "models/d2.h5"
+    model_path = "models/d2_online.h5"
     model.load_weights(model_path, by_name=True)
     print("finish load model")
     

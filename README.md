@@ -15,9 +15,15 @@ This repo is a light version of the original one, remove some script.
 1. d2 bifpn=False pre_score_threshold=0.5 nms=0.5
 loss: 0.2411 - classification_loss: 0.1261 - regression_loss: 0.1151 - val_loss: 0.3281 - val_classification_loss: 0.1818 - val_regression_loss: 0.1463
 
-	valmap9132   coco6810   board 
+	localtrain: valmap9132   coco6810   
 
-2. d1
+	onlinetrain(dataleak):  
+	* pre_score_threshold=0.5 coco7430  board6298
+	* pre_score_threshold=0.4 coco7590  board6291
+
+
+
+2. 
 
 ### Run
 1. python setup_gen_overlap.py

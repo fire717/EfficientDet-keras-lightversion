@@ -1488,7 +1488,7 @@ def predict():
                            freeze_bn=False,
                            detect_quadrangle=False)
 
-    model_path = "models/d2.h5"
+    model_path = "models/d2_online.h5"
     model.load_weights(model_path, by_name=True)
     print("finish load model")
     
