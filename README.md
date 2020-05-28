@@ -9,7 +9,15 @@ This repo is a light version of the original one, remove some script.
 * merge into one file for kaggle kernel
 * relace progressbar2 with tqdm
 * add earlystop,save best model,reduce lr
+* add cocoapi eval
 
+### Test
+1. d2 bifpn=False pre_score_threshold=0.5 nms=0.5
+loss: 0.2411 - classification_loss: 0.1261 - regression_loss: 0.1151 - val_loss: 0.3281 - val_classification_loss: 0.1818 - val_regression_loss: 0.1463
+
+	valmap9132   coco6810   board 
+
+2. d1
 
 ### Run
 1. python setup_gen_overlap.py
@@ -17,8 +25,8 @@ This repo is a light version of the original one, remove some script.
 3. run python train.py
 
 
-### Result
-1. efficientd0 valmap0.8695 board0.5366
+### Base Result
+1. efficientd0 valmap0.8695 board0.5366 coco0.65
 2. efficientd1 valmap0.9037 batchsize16
 3. efficientd2 valmap0.9148 batchsize16
 3. efficientd3 valmap0.9212 batchsize4

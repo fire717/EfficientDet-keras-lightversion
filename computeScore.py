@@ -7,6 +7,10 @@ import glob
 #from utils import postprocess_boxes
 from train import efficientdet
 from matplotlib import pyplot as plt
+import json
+
+from pycocotools.coco import COCO
+from pycocotools.cocoeval import COCOeval
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
@@ -200,16 +204,28 @@ def computeScore(img_boxes, pre_boxes):
     #b
     return np.mean(scores)
 
+
+with open(r'../data/wheat/instances_val.json','r',encoding='utf8')as fp:
+    name_json = json.load(fp)
+
+raw_data = name_json['images']
+name_dict = {}
+for data_map in raw_data:
+    #print(data_map['id'],data_map['file_name'])
+    name_dict[data_map['file_name'].split(".")[0]] = data_map['id']
+
+
+
 def evaluate(data_dict, data_path):
     print("start...")
-    phi = 0
+    phi = 2
     weighted_bifpn = False
     
     image_sizes = (512, 640, 768, 896, 1024, 1280, 1408)
     image_size = image_sizes[phi]
     classes = {0:"wheat"}
     num_classes = len(classes)
-    score_threshold = 0.7
+    score_threshold = 0.5
     colors = [np.random.randint(0, 256, 3).tolist() for _ in range(num_classes)]
     _, model = efficientdet(phi=phi,
                             num_classes=num_classes,
@@ -218,12 +234,12 @@ def evaluate(data_dict, data_path):
                            freeze_bn=False,
                            detect_quadrangle=False)
 
-    model_path = "models/d0.h5"
+    model_path = "models/d2.h5"
     model.load_weights(model_path, by_name=True)
     print("finish load model")
     
     results = []
-
+    results_dict = []
     for img_name, img_boxes in data_dict.items():
         image = cv2.imread(os.path.join(data_path, img_name+".jpg"))
         # BGR -> RGB
@@ -268,7 +284,15 @@ def evaluate(data_dict, data_path):
                 x1,y1,x2,y2 = [int(x) for x in boxes[i]]
                 labels_tmp = [x1,y1,x2-x1,y2-y1]
                 PredictionString += " "+str(scores[i])[:3]+" "+" ".join([str(x) for x in labels_tmp])
-            
+                
+
+                image_result = {
+                        'image_id': name_dict[img_name],
+                        'category_id': 1,
+                        'score': float(scores[i]),
+                        'bbox': [float(x) for x in labels_tmp],
+                      }
+                results_dict.append(image_result)
         #results.append(result)
         
 
@@ -283,19 +307,40 @@ def evaluate(data_dict, data_path):
             #print(img_boxes)
             #print(pre_boxes)
             score = computeScore(img_boxes, pre_boxes)
-        print(score)
+        #print(score)
         results.append(score)
-    print(np.mean(results))
+
+        
+    print("----myscore: ",np.mean(results))
         
 
+    filepath = 'pre_results.json'
+    if os.path.exists(filepath):
+        os.remove(filepath)
+    json.dump(results_dict, open(filepath, 'w'), indent=4)
 
 
+    #initialize COCO ground truth api
+    annType = ['segm','bbox','keypoints']
+    annType = annType[1]  
 
+    dataDir='../data/wheat/train'
+    annFile = '../data/wheat/instances_val.json'
+    cocoGt=COCO(annFile)
+    #initialize COCO detections api
+    resFile='pre_results.json'
+    cocoDt=cocoGt.loadRes(resFile)
 
-    # print(results[0:2])
-    # test_df = pd.DataFrame(results, columns=['image_id', 'PredictionString'])
-    # print(test_df.head())
-    # test_df.to_csv('submission.csv', index=False)
+    imgIds=sorted(cocoGt.getImgIds())
+    imgIds=imgIds[0:100]
+    imgId = imgIds[np.random.randint(100)]
+
+    # running evaluation
+    cocoEval = COCOeval(cocoGt,cocoDt,annType)
+    cocoEval.params.imgIds  = imgIds
+    cocoEval.evaluate()
+    cocoEval.accumulate()
+    cocoEval.summarize()
 
 
 if __name__ == '__main__':
