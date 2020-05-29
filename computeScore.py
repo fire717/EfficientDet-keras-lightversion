@@ -373,14 +373,14 @@ for data_map in raw_data:
 
 def evaluate(data_dict, data_path):
     print("start...")
-    phi = 4
+    phi = 3
     weighted_bifpn = False
     
     image_sizes = (512, 640, 768, 896, 1024, 1280, 1408)
-    image_size = image_sizes[phi]
+    image_size = 1024#image_sizes[phi]
     classes = {0:"wheat"}
     num_classes = len(classes)
-    score_threshold = 0.3
+    score_threshold = 0.6
     colors = [np.random.randint(0, 256, 3).tolist() for _ in range(num_classes)]
     _, model = efficientdet(phi=phi,
                             num_classes=num_classes,
@@ -389,7 +389,7 @@ def evaluate(data_dict, data_path):
                            freeze_bn=False,
                            detect_quadrangle=False)
 
-    model_path = "models/d4_1024.h5"
+    model_path = "models/d3_1024.h5"
     model.load_weights(model_path, by_name=True)
     print("finish load model")
     

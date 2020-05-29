@@ -53,8 +53,11 @@ loss: 0.2411 - classification_loss: 0.1261 - regression_loss: 0.1151 - val_loss:
     * score_threshold=0.4 nms coco0.703     wbf0.703
 	* score_threshold=0.3 nms coco0.684     wbf0.716
 
-
-5.d3 1024
+5.d3 1024 valmap9251
+	* score_threshold=0.6 nms coco0.672
+	* score_threshold=0.5 nms coco0.694
+    * score_threshold=0.4 nms coco0.693
+	* score_threshold=0.3 nms coco0.679
 
 6.d2 1024
 
