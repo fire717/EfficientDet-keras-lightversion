@@ -1,4 +1,4 @@
-tensorflow-gpu==2.5.1
+tensorflow-gpu==2.5.2
 #progressbar2
 #git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI
 tqdm
